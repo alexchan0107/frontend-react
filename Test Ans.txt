@@ -1,0 +1,120 @@
+Quetion 1.
+Answer: 
+
+		Steps To create customize text on homepage: 
+		1) From your Shopify admin, go to Online Store > Themes.
+		2) Find the theme you want to edit and click Actions > Edit code.
+		3) Go to Sections > Add a new section > Enter section name
+		4) After entering the name of section Click “Create section”. eg(Test) then you will get test.liquide
+		5) After the section is created copy the static “HTML” code to that section.
+
+		<!-- Test section starts -->
+		<section class="welcome">
+		<div class="container">
+		<div class="welcome-outter">
+		<h2 class="section-heading">Heading 1</h2>
+		</div>
+		<div class="col-xs-12 col-md-12 text-center"><button class="view-btn"><a href="">read more</a></button></div>
+		</div>
+		</section>
+		<!-- Test section ends -->
+
+		6). Then add the presets details as shown above and SAVE it.
+
+		Test Steps:
+
+		 1) Click the Customize theme.
+		 2) Under Sections select “Add section”.
+		 3) Then search for the section you are made custom as shown below image, I added the section Under “ADVANCED LAYOUT” category 
+		 	and named as “Welcome section Test”.
+		 4). Then, select the section you made and add it. You can check the section is added at your right side screen.
+		 5). After that SAVE it and Refresh your site. You can see the sections are added as shown below.
+
+		if you want to create dynamic then you have to add following code 
+
+		<!-- Test section starts -->
+		<section class="welcome">
+		<div class="container">
+		<div class="welcome-outter">
+		{% if section.settings.section-heading != blank %}
+		<h2 class="section-heading">{{ section.settings.section-heading }}</h2>
+		{% endif %}
+		</div>
+		</div>
+		</section>
+		<!-- Test section ends -->
+
+
+Quetion 2.
+Answer:
+		1. Open the collection page within your Shopify admin that you want to add the full-width banner image to. Scroll to the bottom of the page and click on the "Edit Website SEO" link as pictured below. The last section here is named: URL and handle The handle is the piece that appears right after /collections/   in this instance, the handle is: best-selling
+
+		2. Open the collection description and enter the following shortcode: [banner] and save the collection
+
+		3. Create a JPG image and name it identically to the handle of your collection.
+		   For this example, our image would be called best-selling.jpg. 
+		   If your collection handle is called dresses then you would be saving the image as dresses.jpg
+
+		4. When ready open Settings > Files and upload your image.
+		   This is now ready to show in your store for each collection.
+
+		5. In your theme editor open a Collection page and in the Sections list on the left side ensure that the Collection banner is visible.
+		   An image uploaded to this will be overridden on collections where a custom banner has been added using the above steps.
+
+
+Quetions 3. 
+Answer:
+
+		1. Place the following code where you wish pagination to display. This code must appear within paginate tags for the following 
+		   example to work. Within the paginate tags, you can access the paginate object.
+
+		2. Specify the type of content you want to paginate, and at what limit you wish to paginate by,
+		   for example {% paginate collection.products by 12 %}.
+
+		3. Override the| default_pagination filter Next » and « Previous labels by passing a new label to the next and previous options.
+
+		  {% paginate collection.products by 5 %}
+		  {% for product in collection.products -%}
+		    {{ product.title }}
+		  {%- endfor %}
+
+		  {{- paginate | default_pagination }}
+		  {% endpaginate %}
+
+
+Quetions 4.
+Answer:
+
+			1. Go to your Shopify Themes menu.
+			2. Click Actions > Edit Code.
+			3. Under Sections, locate the product-template. liquid file.
+
+			You can now retrieve a product via a handle using the following:
+
+			{% assign someProduct = all_products.some-handle %}
+
+			{{ all_products['the-handle-of-the-product']. 'Blue T-Shirt' }}
+
+			{% for product in collections.shop_name.products title: 'Blue T-Shirt' %}   
+			/*********** shop_name is collections name limit is used to show no. of products ******/
+			<a href="{{ product.url}}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt=""></a>
+			<h2>{{ product.title }}</h2>
+			<p>{{ product.description }}</p>
+			{% endfor %}
+
+Quetions 5.
+Answer
+
+			{% for i in (0..limit) %}
+			<div class=”item”>
+			<div class=”product-grid”>
+			{% assign product = all_products[carousel_products[i]] %}
+			<div class=”row”>
+			{{product.vendor|link_to_vendor}
+			</div>
+			</div>
+			</div>
+			{%- endfor -%}
+
+
+
